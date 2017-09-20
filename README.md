@@ -20,7 +20,7 @@ Your coins will be safe if the masternode server gets hacked.
 * [4. The last and the most important step](#4-the-last-and-the-most-important-step)
 
 
-## 1. Desktop Wallet Preparation <a href="https://www.youtube.com/watch?v=CtnJlrl-kU0" target="_blank"><img src="http://mupantquat.com/wp-content/plugins/social-profiles-sidebar-widget/iconsets/elegant-media-icons/32x32/youtube.png"></a>
+## 1. Desktop Wallet Preparation <a href="https://www.youtube.com/watch?v=CtnJlrl-kU0" target="_blank"><img src="https://i.imgur.com/SY3eO38.png"></a>
 
 ### 1.1 Download the desktop wallet
 | Wallet        | Description  |
@@ -51,7 +51,7 @@ Your coins will be safe if the masternode server gets hacked.
 1. Delete `%appdata%/Syndicate/peers.dat` file.
 1. Start the wallet and wait for the sync. (30min to 10h depending on the number of the connections)
 	
-## 2. Masternode Setup <a href="https://www.youtube.com/watch?v=-Lt-ifQxS-w" target="_blank"><img src="http://mupantquat.com/wp-content/plugins/social-profiles-sidebar-widget/iconsets/elegant-media-icons/32x32/youtube.png"></a>
+## 2. Masternode Setup <a href="https://www.youtube.com/watch?v=-Lt-ifQxS-w" target="_blank"><img src="https://i.imgur.com/SY3eO38.png"></a>
 
 ### 2.1 Send the coins to your wallet
 1. Open Console (Help => Debug window => Console)
