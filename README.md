@@ -8,7 +8,7 @@ So from now on:
 - no personal help
 
 Try to get help from the cummunity:
-- [synxhodl.slack.com](synxhodl.slack.com)
+- [synxhodl.slack.com](https://synxhodl.slack.com)
 - [https://t.me/syndicateLTD ](https://t.me/syndicateLTD )
 
 Thank you for you understanding!
