@@ -145,6 +145,18 @@ def compile_wallet():
 def get_total_memory():
     return (os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES'))/(1024*1024)
 
+def autostart_masternode(user):
+    job = "@reboot /usr/local/bin/Syndicated\n"
+    
+    p = Popen("crontab -l -u {} 2> /dev/null".format(user), stderr=STDOUT, stdout=PIPE, shell=True)
+    p.wait()
+    lines = p.stdout.readlines()
+    if job not in lines:
+        print_info("Cron job doesn't exist yet, adding it to crontab")
+        lines.append(job)
+        p = Popen('echo "{}" | crontab -u {} -'.format(''.join(lines), user), stderr=STDOUT, stdout=PIPE, shell=True)
+        p.wait()
+
 def setup_first_masternode():
     print_info("Setting up first masternode")
     run_command("useradd --create-home -G sudo mn1")
@@ -188,6 +200,7 @@ masternodeprivkey={}
     run_command('su - mn1 -c "{}" '.format("cd && unzip -d .Syndicate -o " + filename))
 
     run_command('rm /home/mn1/.Syndicate/peers.dat') 
+    autostart_masternode('mn1')
     os.system('su - mn1 -c "{}" '.format('Syndicated -daemon &> /dev/null'))
     print_warning("Masternode started syncing in the background...")
 
@@ -228,7 +241,8 @@ masternodeprivkey={}
     f = open('/home/mn{}/.Syndicate/Syndicate.conf'.format(xth), 'w')
     f.write(config)
     f.close()
-
+    
+    autostart_masternode('mn'+str(xth))
     os.system('su - mn{} -c "{}" '.format(xth, 'Syndicated  -daemon &> /dev/null'))
     print_warning("Masternode started syncing in the background...")
     
