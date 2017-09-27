@@ -7,7 +7,7 @@ your coins in your private wallet, and are not required to have your local walle
 Your coins will be safe if the masternode server gets hacked.
 
 ## Table of Content
-* [1. Setup the wallet](#1-setup-the-wallet)
+* [1. Desktop Wallet Preparation](#1-desktop-wallet-preparation)
 * [2. Masternode Setup](#2-masternode-setup)
 	* [2.1 Send the coins to your wallet](#21-send-the-coins-to-your-wallet)
 	* [2.2 VPS setup](#22-vps-setup)
