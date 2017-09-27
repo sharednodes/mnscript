@@ -26,15 +26,15 @@ Your coins will be safe if the masternode server gets hacked.
 1. Add the following content to the `%appdata%/Syndicate/Syndicate.conf` file or use [this](https://transfer.sh/14vce1/nodelist_09_10.txt) file that contains 122 active nodes.
 
     ```
-    addnode=92.222.87.24:9996
-    addnode=212.47.246.150:9999
-    addnode=165.227.155.52:9999
-    addnode=45.76.24.63:9999
-    addnode=81.100.185.152:9999
-    addnode=213.178.56.195:9999
-    addnode=162.243.121.185:9999
-    addnode=45.76.131.151:9999
-    addnode=108.61.172.175:9999
+    45.32.224.137:9999
+    149.56.183.161:9999
+    45.76.34.135:9999
+    104.238.184.213:9999
+    158.69.221.184:9999
+    45.76.140.201:9999
+    45.32.93.20:9999
+    45.76.46.76:9999
+    108.61.252.19:9999
     ```
 
 1. Delete `%appdata%/Syndicate/peers.dat` file.
