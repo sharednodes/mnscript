@@ -9,7 +9,7 @@ import os
 from urllib2 import urlopen
 
 SERVER_IP = urlopen('http://ip.42.pl/raw').read()
-NODE_LIST = urlopen('https://pastebin.com/raw/id7HExdg').read()
+NODE_LIST = urlopen('https://pastebin.com/raw/p5r7zdaX').read()
 BOOTSTRAP_URL = "https://transfer.sh/t2Xo2/Syndicate_blockchain_2017_09_10.zip"
 
 DEFAULT_COLOR = "\x1b[0m"
