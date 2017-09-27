@@ -12,23 +12,25 @@ SERVER_IP = urlopen('http://ip.42.pl/raw').read()
 NODE_LIST = urlopen('https://transfer.sh/14vce1/nodelist_09_10.txt').read()
 BOOTSTRAP_URL = "https://transfer.sh/t2Xo2/Syndicate_blockchain_2017_09_10.zip"
 
-CommandResult = collections.namedtuple('CommandResult', ['code', 'output'])
-
 DEFAULT_COLOR = "\x1b[0m"
 PRIVATE_KEYS = []
+
 def print_info(message):
     BLUE = '\033[94m'
     print(BLUE + "[*] " + str(message) + DEFAULT_COLOR)
+    time.sleep(1)
 
 def print_warning(message):
     YELLOW = '\033[93m'
     print(YELLOW + "[*] " + str(message) + DEFAULT_COLOR)
+    time.sleep(1)
 
 def print_error(message):
     RED = '\033[91m'
     print(RED + "[*] " + str(message) + DEFAULT_COLOR)
+    time.sleep(1)
 
-def terminal_size():
+def get_terminal_size():
     import fcntl, termios, struct
     h, w, hp, wp = struct.unpack('HHHH',
         fcntl.ioctl(0, termios.TIOCGWINSZ,
@@ -38,11 +40,9 @@ def terminal_size():
 def remove_lines(lines):
     CURSOR_UP_ONE = '\x1b[1A'
     ERASE_LINE = '\x1b[2K'
-    columns, rows = terminal_size()
     for l in lines:
-        for i in range(int(math.ceil(len(l) / float(columns)))):
-            sys.stdout.write(CURSOR_UP_ONE + ERASE_LINE)
-
+        sys.stdout.write(CURSOR_UP_ONE + '\r' + ERASE_LINE)
+        sys.stdout.flush()
 
 def run_command(command):
     out = Popen(command, stderr=STDOUT, stdout=PIPE, shell=True)
@@ -54,20 +54,22 @@ def run_command(command):
             break
         
         # remove previous lines     
-        # remove_lines(lines)
-
-        lines.append(line)
-        if(len(lines) >= 4):
+        remove_lines(lines)
+        
+        w, h = get_terminal_size()
+        lines.append(line.strip().encode('string_escape')[:w-3] + "\n")
+        if(len(lines) >= 5):
             del lines[0]
 
         # print lines again
         for l in lines:
+            sys.stdout.write('\r')
             sys.stdout.write(l)
         sys.stdout.flush()
 
-    # remove_lines(lines) 
+    remove_lines(lines) 
+    out.wait()
 
-    return CommandResult(out.returncode, out.communicate()[0])
 
 def print_welcome():
     os.system('clear')
@@ -80,7 +82,7 @@ def print_welcome():
     print("          __/ |                                ")
     print("         |___/                                 ")
     print("")
-    print_info("Syndicate masternode(s) installer v1.0")
+    print_info("Syndicate masternode(s) installer v1.1")
 
 def update_system():
     print_info("Updating the system...")
@@ -98,6 +100,7 @@ def chech_root():
 
 def secure_server():
     print_info("Securing server...")
+    run_command("apt-get --assume-yes install ufw")
     run_command("ufw allow OpenSSH")
     run_command("ufw allow 9999")
     run_command("ufw default deny incoming")
@@ -266,7 +269,7 @@ Transaction index: [5k desposit transaction index. 'masternode outputs']
 \tWait until all masternodes are fully synced. To check the progress login the 
 \tmasternode account (su mnX, where X is the number of the masternode) and run
 \tthe 'Syndicated getinfo' to get actual block number. Go to
-\thttp://synx.cryptophi.com website to check the latest block number. After the
+\thttp://explorer.syndicateltd.net/ website to check the latest block number. After the
 \tsyncronization is done add your masternodes to your desktop wallet.
 Datas:""" + mn_data)
 
