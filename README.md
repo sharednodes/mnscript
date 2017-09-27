@@ -82,11 +82,7 @@ wget https://raw.githubusercontent.com/u3mur4/syndicate/master/synx.py && python
 ## 3. FAQ
 
 1. What if I restart the server?
-	- Connect to the server
-	- Login every masternode account (use root account): `su mnX`
-	- Start the masternode: `Syndicated`
-	- Wait until fully sync
-	- Start masternode from the wallet
+	- The script setup a cron job so the masternode automaticly starts every time when the vps turns on.
 1. How to get masternode profit?
 	- Enable coin controll feature (Settings => Options => Display => Display coin controll feature)
 	- Go send tab
