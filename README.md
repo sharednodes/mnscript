@@ -23,7 +23,7 @@ Your coins will be safe if the masternode server gets hacked.
 1. Start and Close the wallet. (creates the folder structure)
 1. Download [Syndicate_blockchain_2017_09_10.zip](https://transfer.sh/t2Xo2/Syndicate_blockchain_2017_09_10.zip) bootstrap file. [mirror1](https://mega.nz/#!1iYBiSLR!-3UHVqz4X5fjLNBqn65OQTM_9zdl3V_AWhfzDb3meok) [older chain](http://108.61.216.160/cryptochainer.chains/chains/Syndicate_blockchain.zip)
 1. Extract the zip file to `%appdata%/Syndicate/` folder. Override existing files!
-1. Add the following content to the `%appdata%/Syndicate/Syndicate.conf` file or use [this](https://transfer.sh/14vce1/nodelist_09_10.txt) file that contains 122 active nodes.
+1. Add the following content to the `%appdata%/Syndicate/Syndicate.conf` file or use [this](https://pastebin.com/raw/id7HExdg) file that contains 110 active nodes.
 
     ```
     45.32.224.137:9999
