@@ -115,7 +115,7 @@ Don't be shy, send a small amount of coin if you found this instruction helpful.
 | Coin           | Address  |
 | ---------------| ---------|
 | Syndicate coin | SQaK48Xo9HToqCvG36YZACkFKbmHNamH6T |
-| BTC 			 | 1GMWb8sGBrbYweyDnHtMzon56fcmQRb1j  |
-| ETH 			 | 0x5E7c58EE90a684202227AB432d27DaAf51BBCA0f |
+| BTC 			 | 33CrDPyMpcwJFyMTceVMTLJYLR8zBSsnWm  |
+| ETH 			 | 0x9a794240b456B8dD5593a7e8d7AE92f4ca4D9D2f |
 
 	
