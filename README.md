@@ -109,7 +109,7 @@ wget https://raw.githubusercontent.com/u3mur4/syndicate/master/synx.py && python
 
 ## 4. The last and the most important step
 
-Don't be shy, send a small amount of coin if you found this instruction helpful.
+Don't be shy, send a small amount of coin if you found this instruction (yt video and setup script) helpful.
 
 | Coin           | Address  |
 | ---------------| ---------|
