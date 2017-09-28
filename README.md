@@ -111,10 +111,10 @@ wget https://raw.githubusercontent.com/u3mur4/syndicate/master/synx.py && python
 
 Don't be shy, send a small amount of coin if you found this instruction (yt video and setup script) helpful.
 
-| Coin           | Address  |
-| ---------------| ---------|
-| Syndicate coin | SQaK48Xo9HToqCvG36YZACkFKbmHNamH6T |
-| BTC 			 | 33CrDPyMpcwJFyMTceVMTLJYLR8zBSsnWm  |
-| ETH 			 | 0x9a794240b456B8dD5593a7e8d7AE92f4ca4D9D2f |
+| Coin | Address  |
+| -----| ---------|
+| SYNX | SNoGsL8Ej7DuYcx5v2Yy1HfXkMoZZmzEym  |
+| BTC  | 33CrDPyMpcwJFyMTceVMTLJYLR8zBSsnWm  |
+| ETH  | 0x9a794240b456B8dD5593a7e8d7AE92f4ca4D9D2f |
 
 	
