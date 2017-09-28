@@ -1,5 +1,3 @@
-# FIXING IN PROGRESS...
-
 # ![Syndicate](https://raw.githubusercontent.com/u3mur4/syndicate/master/logo.png) Syndicate Guide
 
 Use this instruction and the youtube video to install the wallet, fix wallet issues and setup one/multiple masternode(s).
