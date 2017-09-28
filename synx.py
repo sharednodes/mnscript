@@ -235,7 +235,7 @@ mnconflock=1
 masternode=1
 masternodeaddr={}:{}
 masternodeprivkey={}
-{}""".format(rpc_username, rpc_password, BASE_RPC_PORT + xth, BASE_PORT + xth, SERVER_IP, BASE_PORT + xth, masternode_priv_key, NODE_LIST)
+{}""".format(rpc_username, rpc_password, BASE_RPC_PORT + xth - 1, BASE_PORT + xth - 1, SERVER_IP, BASE_PORT + xth - 1, masternode_priv_key, NODE_LIST)
     
     print_info("Saving config file...")
     f = open('/home/mn{}/.Syndicate/Syndicate.conf'.format(xth), 'w')
