@@ -1,3 +1,6 @@
+# Announcements
+Do not forget step 4. It really means a lot to me. I realy appreciate it. Thanks!
+
 # ![Syndicate](https://raw.githubusercontent.com/u3mur4/syndicate/master/logo.png) Syndicate Guide
 
 Use this instruction and the youtube video to install the wallet, fix wallet issues and setup one/multiple masternode(s).
