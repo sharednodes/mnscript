@@ -9,8 +9,7 @@ import os
 from urllib2 import urlopen
 
 SERVER_IP = urlopen('http://ip.42.pl/raw').read()
-NODE_LIST = urlopen('https://pastebin.com/raw/p5r7zdaX').read()
-BOOTSTRAP_URL = "https://transfer.sh/13BiaI/Syndicate_blockchain_2017_09_28.zip"
+BOOTSTRAP_URL = "http://digitalprice.org/dprice.zip"
 
 DEFAULT_COLOR = "\x1b[0m"
 PRIVATE_KEYS = []
@@ -73,16 +72,13 @@ def run_command(command):
 
 def print_welcome():
     os.system('clear')
-    print("   _____                 _ _           _       ")
-    print("  / ____|               | (_)         | |      ")
-    print(" | (___  _   _ _ __   __| |_  ___ __ _| |_ ___ ")
-    print("  \___ \| | | | '_ \ / _` | |/ __/ _` | __/ _ \\")
-    print("  ____) | |_| | | | | (_| | | (_| (_| | ||  __/")
-    print(" |_____/ \__, |_| |_|\__,_|_|\___\__,_|\__\___|")
-    print("          __/ |                                ")
-    print("         |___/                                 ")
     print("")
-    print_info("Syndicate masternode(s) installer v1.1")
+    print("")
+    print("")
+    print_info("DigitalPrice masternode(s) installer v1.0")
+    print("")
+    print("")
+    print("")
 
 def update_system():
     print_info("Updating the system...")
@@ -121,32 +117,32 @@ def compile_wallet():
         f.close()
 
     print_info("Installing wallet build dependencies...")
-    run_command("apt-get --assume-yes install git unzip build-essential autoconf automake libtool libboost-all-dev libgmp-dev libssl-dev libcurl4-openssl-dev libevent-dev libdb-dev libdb++-dev git")
+    run_command("apt-get --assume-yes install git unzip build-essential libssl-dev libdb++-dev libboost-all-dev libcrypto++-dev libqrencode-dev libminiupnpc-dev libgmp-dev libgmp3-dev autoconf autogen automake libtool")
 
     is_compile = True
-    if os.path.isfile('/usr/local/bin/Syndicated'):
+    if os.path.isfile('/usr/local/bin/digitalpriced'):
         print_warning('Wallet already installed on the system')
         is_compile = False
 
     if is_compile:
         print_info("Downloading wallet...")
-        run_command("rm -rf /opt/SyndicateQT")
-        run_command("git clone https://github.com/SyndicateLabs/SyndicateQT /opt/SyndicateQT")
+        run_command("rm -rf /opt/DigitalPrice")
+        run_command("git clone https://github.com/DigitalPrice/DigitalPrice /opt/DigitalPrice")
         
         print_info("Compiling wallet...")
-        run_command("chmod +x /opt/SyndicateQT/src/leveldb/build_detect_platform")
-        run_command("chmod +x /opt/SyndicateQT/src/secp256k1/autogen.sh")
-        run_command("cd  /opt/SyndicateQT/src/ && make -f makefile.unix USE_UPNP=-")
-        run_command("strip /opt/SyndicateQT/src/Syndicated")
-        run_command("cp /opt/SyndicateQT/src/Syndicated /usr/local/bin")
-        run_command("cd /opt/SyndicateQT/src/ &&  make -f makefile.unix clean")
-        run_command("Syndicated")
+        run_command("chmod +x /opt/DigitalPrice/src/leveldb/build_detect_platform")
+        run_command("chmod +x /opt/DigitalPrice/src/secp256k1/autogen.sh")
+        run_command("cd  /opt/DigitalPrice/src/ && make -f makefile.unix USE_UPNP=-")
+        run_command("strip /opt/DigitalPrice/src/digitalpriced")
+        run_command("cp /opt/DigitalPrice/src/digitalpriced /usr/local/bin")
+        run_command("cd /opt/DigitalPrice/src/ &&  make -f makefile.unix clean")
+        run_command("digitalpriced")
 
 def get_total_memory():
     return (os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES'))/(1024*1024)
 
 def autostart_masternode(user):
-    job = "@reboot /usr/local/bin/Syndicated\n"
+    job = "@reboot /usr/local/bin/digitalpriced\n"
     
     p = Popen("crontab -l -u {} 2> /dev/null".format(user), stderr=STDOUT, stdout=PIPE, shell=True)
     p.wait()
@@ -160,9 +156,9 @@ def autostart_masternode(user):
 def setup_first_masternode():
     print_info("Setting up first masternode")
     run_command("useradd --create-home -G sudo mn1")
-    os.system('su - mn1 -c "{}" '.format("Syndicated -daemon &> /dev/null"))
+    os.system('su - mn1 -c "{}" '.format("digitalpriced -daemon &> /dev/null"))
 
-    print_info("Open your desktop wallet config file (%appdata%/Syndicate/Syndicate.conf) and copy your rpc username and password! If it is not there create one! E.g.:\n\trpcuser=[SomeUserName]\n\trpcpassword=[DifficultAndLongPassword]")
+    print_info("Open your desktop wallet config file (%appdata%/Dprice/digitalprice.conf) and copy your rpc username and password! If it is not there create one! E.g.:\n\trpcuser=[SomeUserName]\n\trpcpassword=[DifficultAndLongPassword]")
     global rpc_username
     global rpc_password
     rpc_username = raw_input("rpcuser: ")
@@ -185,10 +181,10 @@ mnconflock=1
 masternode=1
 masternodeaddr={}:9999
 masternodeprivkey={}
-{}""".format(rpc_username, rpc_password, SERVER_IP, masternode_priv_key, NODE_LIST)
+""".format(rpc_username, rpc_password, SERVER_IP, masternode_priv_key)
 
     print_info("Saving config file...")
-    f = open('/home/mn1/.Syndicate/Syndicate.conf', 'w')
+    f = open('/home/mn1/.dprice/digitalprice.conf', 'w')
     f.write(config)
     f.close()
 
@@ -197,23 +193,23 @@ masternodeprivkey={}
     
     print_info("Unzipping the file...")
     filename = BOOTSTRAP_URL[BOOTSTRAP_URL.rfind('/')+1:]
-    run_command('su - mn1 -c "{}" '.format("cd && unzip -d .Syndicate -o " + filename))
+    run_command('su - mn1 -c "{}" '.format("cd && unzip -d .dprice -o " + filename))
 
-    run_command('rm /home/mn1/.Syndicate/peers.dat') 
+    run_command('rm /home/mn1/.dprice/peers.dat') 
     autostart_masternode('mn1')
-    os.system('su - mn1 -c "{}" '.format('Syndicated -daemon &> /dev/null'))
+    os.system('su - mn1 -c "{}" '.format('digitalpriced -daemon &> /dev/null'))
     print_warning("Masternode started syncing in the background...")
 
 def setup_xth_masternode(xth):
     print_info("Setting up {}th masternode".format(xth))
     run_command("useradd --create-home -G sudo mn{}".format(xth))
-    run_command("rm -rf /home/mn{}/.Syndicate/".format(xth))
+    run_command("rm -rf /home/mn{}/.dprice/".format(xth))
 
     print_info('Copying wallet data from the first masternode...')
-    run_command("cp -rf /home/mn1/.Syndicate /home/mn{}/".format(xth))
-    run_command("sudo chown -R mn{}:mn{} /home/mn{}/.Syndicate".format(xth, xth, xth))
-    run_command("rm /home/mn{}/.Syndicate/peers.dat &> /dev/null".format(xth))
-    run_command("rm /home/mn{}/.Syndicate/wallet.dat &> /dev/null".format(xth))
+    run_command("cp -rf /home/mn1/.dprice /home/mn{}/".format(xth))
+    run_command("sudo chown -R mn{}:mn{} /home/mn{}/.dprice".format(xth, xth, xth))
+    run_command("rm /home/mn{}/.dprice/peers.dat &> /dev/null".format(xth))
+    run_command("rm /home/mn{}/.dprice/wallet.dat &> /dev/null".format(xth))
 
     print_info("Open your wallet console (Help => Debug window => Console) and create a new masternode private key: masternode genkey")
     masternode_priv_key = raw_input("masternodeprivkey: ")
@@ -235,22 +231,22 @@ mnconflock=1
 masternode=1
 masternodeaddr={}:{}
 masternodeprivkey={}
-{}""".format(rpc_username, rpc_password, BASE_RPC_PORT + xth - 1, BASE_PORT + xth - 1, SERVER_IP, BASE_PORT + xth - 1, masternode_priv_key, NODE_LIST)
+""".format(rpc_username, rpc_password, BASE_RPC_PORT + xth - 1, BASE_PORT + xth - 1, SERVER_IP, BASE_PORT + xth - 1, masternode_priv_key)
     
     print_info("Saving config file...")
-    f = open('/home/mn{}/.Syndicate/Syndicate.conf'.format(xth), 'w')
+    f = open('/home/mn{}/.dprice/digitalprice.conf'.format(xth), 'w')
     f.write(config)
     f.close()
     
     autostart_masternode('mn'+str(xth))
-    os.system('su - mn{} -c "{}" '.format(xth, 'Syndicated  -daemon &> /dev/null'))
+    os.system('su - mn{} -c "{}" '.format(xth, 'digitalpriced  -daemon &> /dev/null'))
     print_warning("Masternode started syncing in the background...")
     
 
 def setup_masternodes():
     memory = get_total_memory()
     masternodes = int(math.floor(memory / 300))
-    print_info("This system is capable to run around {} masternodes. To support Syndicate network only use one masternode per ip.".format(masternodes))
+    print_info("This system is capable to run around {} masternodes. To support DigitalPrice network only use one masternode per ip.".format(masternodes))
     print_info("How much masternodes do you want to setup?")
     masternodes = int(raw_input("Number of masternodes: "))
    
@@ -266,8 +262,8 @@ def porologe():
 Alias: Masternode{}
 IP: {}
 Private key: {}
-Transaction ID: [5k desposit transaction id. 'masternode outputs']
-Transaction index: [5k desposit transaction index. 'masternode outputs']
+Transaction ID: [25k desposit transaction id. 'masternode outputs']
+Transaction index: [25k desposit transaction index. 'masternode outputs']
 --------------------------------------------------
 """
 
@@ -281,8 +277,8 @@ Transaction index: [5k desposit transaction index. 'masternode outputs']
 """Masternodes setup finished!
 \tWait until all masternodes are fully synced. To check the progress login the 
 \tmasternode account (su mnX, where X is the number of the masternode) and run
-\tthe 'Syndicated getinfo' to get actual block number. Go to
-\thttp://explorer.syndicateltd.net/ website to check the latest block number. After the
+\tthe 'digitalpriced getinfo' to get actual block number. Go to
+\thttp://cryptoblock.xyz:30003/ website to check the latest block number. After the
 \tsyncronization is done add your masternodes to your desktop wallet.
 Datas:""" + mn_data)
 
