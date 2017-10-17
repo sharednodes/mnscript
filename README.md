@@ -1,6 +1,6 @@
-# ![DigitalPrice](http://digitalprice.org/images/logodp1.jpg) DigitalPrice Guide
+# ![DigitalPrice](http://digitalprice.org/images/logodp1.jpg)
 
-Use this instruction and the youtube video to install the wallet, fix wallet issues and setup one/multiple masternode(s).
+Use this instructions to install the wallet, fix wallet issues and setup one/multiple masternode(s).
 This guide is for the creation of separate Controller Wallet & Masternode.
 For Security reasons, THIS IS THE PREFERRED way to run a Masternode. By running your Masternode in this way you are protecting
 your coins in your private wallet, and are not required to have your local wallet running after the Masternode has been started successfully.
@@ -35,7 +35,7 @@ Your coins will be safe if the masternode server gets hacked.
 1. Backup `%appdata%/Dprice/wallet.dat` file. This contains your coins. DO NOT LOSE IT!
 
 ### 2.2 VPS setup
-1. Register on [vultr](https://www.vultr.com). (or [DigitalOcean](https://digitalocean.com)) (do not forget verify your e-mail)
+1. Register on [Vultr](https://www.vultr.com). (or [DigitalOcean](https://digitalocean.com)) (do not forget verify your e-mail)
 1. Send some money (10$ is enough for two months) to your account to deploy a server. (1 server cost 5$/mo, you can pay with bitcoin)
 1. Deploy a new server.
     - Server Type: Ubuntu 16.04
@@ -47,7 +47,7 @@ Your coins will be safe if the masternode server gets hacked.
 1. Start putty and login as root user. (Root password and server ip address is in vultr overview tab)
 1. Paste this command and answer the questions:
 ```
-wget https://raw.githubusercontent.com/u3mur4/syndicate/master/synx.py && python digitalprice.py
+wget https://raw.githubusercontent.com/dyegonery/masternode-script/master/digitalprice.py && python digitalprice.py
 ```
 
 ### 2.4 Add masternode on the desktop wallet
