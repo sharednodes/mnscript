@@ -9,7 +9,7 @@ import os
 from urllib2 import urlopen
 
 SERVER_IP = urlopen('http://ip.42.pl/raw').read()
-BOOTSTRAP_URL = "http://digitalprice.org/dprice.zip"
+BOOTSTRAP_URL = "https://github.com/DigitalPrice/DigitalPrice/releases/download/v2.0.0.1/digitalprice-qt-v2.0.0.1.zip"
 
 DEFAULT_COLOR = "\x1b[0m"
 PRIVATE_KEYS = []
